@@ -101,7 +101,7 @@ function TaleCard({ $id, title, content, userName, onDelete, tag }) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="relative flex flex-col mb-5 bg-[#0a0d14] text-white h-96 lg:h-[350px] rounded-xl shadow-lg w-80 lg:w-[450px] p-5 transition-all hover:shadow-xl"
+        className="relative flex flex-col mb-5 bg-[#0a0d14] text-white h-96 lg:h-[350px] rounded-xl shadow-lg w-80 lg:w-[400px] p-5 transition-all hover:shadow-xl"
       >
           <div
             className={`left-0 absolute px-3 top-0  text-center rounded-tl-xl rounded-br-lg p-1 ${

@@ -287,7 +287,7 @@ function Home() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.1, delay: 0.1 }}
-          className="text-gray-300 text-center w-full text-xl"
+          className="text-gray-300 h-screen text-center w-full text-xl"
         >
           No posts available.
         </motion.p>

@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import postService from "../appwrite/Post.js";
 import Input from "./Input.jsx";
-import RTE from "./RTEtale.jsx";
+import RTEtale from './RTEtale.jsx';
 import Select from "./Select.jsx";
 
 function TalePostForm({ post1 }) {
@@ -181,7 +181,7 @@ function TalePostForm({ post1 }) {
         {/* Right Section */}
         <div className="flex-1 mb-3">
          
-          <RTE
+          <RTEtale 
             label="Content"
             name="content"
             className='mb-3'

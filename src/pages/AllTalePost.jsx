@@ -35,7 +35,7 @@ function AllPosts() {
 
     return (
         
-            <div className=''>
+            <div className='mb-10'>
             <Container>
                 <div className='mx-10 justify-center pt-30 flex flex-wrap gap-5'>
                     {posts.length > 0 ? (
@@ -46,7 +46,7 @@ function AllPosts() {
                             </div>
                         ))
                     ) : (
-                        <p className='text-4xl font-bold text-center w-full'>No posts found.</p>
+                        <p className='h-screen text-4xl font-bold text-center w-full'>No posts found.</p>
                     )}
                 </div>
             </Container>
