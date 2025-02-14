@@ -72,9 +72,14 @@ function Home() {
       desc: "Built interactive and dynamic UI with React and added smooth animations using Framer Motion.",
     },
     {
-      date: "GitHub",
-      title: "Hosting",
+      date: "Github",
+      title: "Managing Project",
       desc: "Deployed and managed the project with GitHub Pages and continuous integration workflows.",
+    },
+    {
+      date: "Vercel",
+      title: "Hosting",
+      desc: "Hosted and managed the project on Vercel with CI/CD integration via GitHub Pages.",
     },
   ];
   
@@ -236,7 +241,7 @@ function Home() {
           {timelineData.map((item, index) => (
             <motion.li
               key={index}
-              className={`relative mb-12 flex w-full ${
+              className={`relative mb-8 flex w-full ${
                 index % 2 === 0 ? "justify-start" : "justify-end"
               }`}
               initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
@@ -253,11 +258,11 @@ function Home() {
                   index % 2 === 0 ? "text-right" : "text-left"
                 }`}
               >
-                <time className="mb-1 text-sm font-normal leading-none text-gray-400">
+                <time className="mb-1 italic text-sm font-normal leading-none text-gray-400">
                   {item.date}
                 </time>
                 <h3 className="text-sm lg:text-lg  font-semibold">{item.title}</h3>
-                <p className="mb-4 lg:block hidden text-base font-normal text-gray-300">{item.desc}</p>
+                <p className="mb-4 lg:block hidden text-base font-normal text-gray-400">{item.desc}</p>
 
                 {/* Learn More Button */}
                
