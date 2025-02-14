@@ -11,9 +11,10 @@ function Footer() {
           transition={{ duration: 0.5 }}
           className="mb-6"
         >
-          <a href="/" className="flex items-center">
+          <a href="/" className="flex gap-3 items-center">
+          <img src="/public/Logo.png" alt="logo" className="w-7 h-7"/>
             
-            <span className="self-center text-gray-400 lg:block md:block hidden text-2xl font-semibold ">
+            <span style={{fontFamily:'Literata'}} className="self-center text-gray-400 lg:block md:block hidden text-2xl font-semibold ">
               Taleverse
             </span>
           </a>
