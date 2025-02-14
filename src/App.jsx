@@ -27,7 +27,7 @@ function App() {
   return !loading ? (
     <div className="flex flex-col overflow-y-auto bg-black text-white">
       {/* Header */}
-      <header className="fixed top-0 left-0 w-full bg-transparent z-50">
+      <header className="fixed top-0 right-0 w-full bg-transparent z-10">
         <Header />
       </header>
 

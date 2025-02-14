@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import authService from '../appwrite/authService'; // Assuming you have an Auth module to get the user
 import post from '../appwrite/Post';
-import JokeCard from '../components/JokeCard';
+import TaleCard from '../components/TaleCard';
 import Container from '../container/Container';
 
 function AllPosts() {
@@ -35,17 +35,18 @@ function AllPosts() {
 
     return (
         
-            <div>
+            <div className=''>
             <Container>
-                <div className='flex flex-wrap py-10'>
+                <div className='mx-10 justify-center pt-30 flex flex-wrap gap-5'>
                     {posts.length > 0 ? (
-                        posts.map((postItem) => (
-                            <div key={postItem.$id} className='p-2 w-1/4'>
-                                <JokeCard {...postItem} />
+                        posts.sort((a,b)=> new Date(b.created)- new Date(a.created))
+                        .map((postItem) => (
+                            <div key={postItem.$id} className=''>
+                                <TaleCard {...postItem} />
                             </div>
                         ))
                     ) : (
-                        <p>No posts found.</p>
+                        <p className='text-4xl font-bold text-center w-full'>No posts found.</p>
                     )}
                 </div>
             </Container>

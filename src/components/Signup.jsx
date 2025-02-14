@@ -28,8 +28,8 @@ function Signup() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(signup)} className="max-w-sm mb-10 mx-auto bg-gray-900 p-10 rounded text-white">
+    <div className=" mt-20">
+      <form onSubmit={handleSubmit(signup)} className="my-30  max-w-sm mb-10 mx-auto bg-gray-900 p-10 rounded text-white">
         <div className="mb-5">
         <h1 className="text-xl mb-5 text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                   Sign up to your account
@@ -42,7 +42,7 @@ function Signup() {
                         })}
             type="name"
             id="name"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border text-black border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
             
             required
           />
@@ -69,12 +69,14 @@ function Signup() {
         <div className="mb-5">
           
           <Input
-            label="Password: "
+            label="Password: (Atleast 8 characters long)"
             placeholder="Enter Password"
             {...register("password", {
               required: true,
+             
             })}
             type="password"
+            
             id="password"
             className="bg-gray-50 border border-gray-300 text-black  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
             required
@@ -83,7 +85,7 @@ function Signup() {
 
         <button
           type="submit"
-          className="text-white w-full bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm   px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className="text-white w-full cursor-pointer my-5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm   px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
           Submit
         </button>
@@ -99,6 +101,7 @@ function Signup() {
 
       </p>
       {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
+      
     </form>
     </div>
 

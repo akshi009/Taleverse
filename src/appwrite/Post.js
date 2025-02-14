@@ -15,6 +15,7 @@ export class Post {
 async createPost({userName,title,
     content,
     status,
+    tag,
     userId})
 {
     try {
@@ -27,6 +28,7 @@ async createPost({userName,title,
                 title,
                 content,
                 status,
+                tag,
                 userId
             }
         )
@@ -36,7 +38,7 @@ async createPost({userName,title,
 }
 
 
-async updatePost(postId, { title, content, status }) {
+async updatePost(postId, { title, content, status,tag }) {
     if (!postId) {
         console.error("No post ID provided for update.");
         return;
@@ -47,7 +49,7 @@ async updatePost(postId, { title, content, status }) {
             config.appwriteDatabaseId,
             config.appwriteCollectionId,
             postId, // Ensure correct document ID is used
-            { title, content, status }
+            { title, content, status, tag }
         );
     } catch (error) {
         console.error("Error updating post:", error.message);

@@ -92,7 +92,7 @@ function Footer() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.6 }}
-          className="sm:flex sm:items-center sm:justify-between"
+          className="sm:flex sm:items-center hidden sm:justify-between"
         >
           <span className="text-sm text-gray-500 dark:text-gray-500">
             © {new Date().getFullYear()} Taleverse. All Rights Reserved.

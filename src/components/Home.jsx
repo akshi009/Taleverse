@@ -1,14 +1,14 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import post from "../appwrite/Post";
-import JokeCard from "./JokeCard";
+import TaleCard from "./TaleCard";
 
 function Home() {
   const auth = useSelector((state) => state.auth.status);
   const heroRef = useRef(null);
-  const actionRef = useRef(null);
-  // const journeyRef = useRef(null);
+ 
 
   // Parallax effect for Hero section
   const { scrollYProgress: heroScroll } = useScroll({
@@ -17,55 +17,26 @@ function Home() {
   });
   const heroParallax = useTransform(heroScroll, [0, 1], [0, -200]);
 
-  // Parallax effect for Action section
-  const { scrollYProgress: actionScroll } = useScroll({
-    target: actionRef,
-    offset: ["start center", "end center"],
-  });
-  const actionParallax = useTransform(actionScroll, [0, 1], [50, 0]); // More dynamic effect
 
-  // Parallax effect for Journey section
-
-  // const { scrollYProgress: journeyScroll } = useScroll({
-  //   target: journeyRef,
-  //   offset: ["start center", "end center"],
-  // });
-  // const journeyParallax = useTransform(journeyScroll, [0, 1], [100, -100]);
-
-
-  // useEffect(() => {
-  //   return scrollYProgress.onChange((latest) =>
-  //     // console.log("Scroll Progress:", latest)
-  //   );
-  // }, [scrollYProgress]);
-
-  const [joke, setJoke] = useState("");
   const [posts, setPosts] = useState([]);
 
-  const fetchJoke = async () => {
-    try {
-      const response = await fetch(
-        "https://official-joke-api.appspot.com/random_joke"
-      );
-      const data = await response.json();
-      setJoke(`${data.setup} - ${data.punchline}`);
-    } catch (e) {
-      console.error("Error fetching joke:", e);
-      setJoke("Failed to fetch a joke. Try again later! 😅");
-    }
-  };
+  
 
   useEffect(() => {
-    fetchJoke();
-    post
-      .getAllPost()
+    post.getAllPost()
       .then((response) => {
         if (response?.documents) {
-          setPosts(response.documents);
+          const sortedPosts = response.documents.sort(
+            (a, b) => new Date(b.createdAt || b.$createdAt) - new Date(a.createdAt || a.$createdAt)
+          );
+          setPosts([...sortedPosts]);
         }
       })
       .catch((error) => console.error("Error fetching posts:", error));
   }, []);
+  
+  
+  
 
   const fullText =
     "Unleash your imagination, one word at a time. Share your story, inspire the world, and let your voice be heard...";
@@ -79,14 +50,10 @@ function Home() {
         i++;
       } else {
         clearInterval(interval);
-      }
+      } 
     }, 70));
     return () => clearInterval(interval);
   }, []);
-
-
- 
-
 
   const timelineData = [
     {
@@ -111,7 +78,25 @@ function Home() {
     },
   ];
   
-
+  const stories = [
+    {
+      id: 1,
+      tag: "Emotional",
+      content:
+        "Aarav sat on the park bench, staring at his phone. His fingers hovered over the voicemail icon, the one message he had avoided for weeks. It was from his mother. She had left it the night before the accident....",
+      author: "Akshi",
+      date: "3 Dec 2025",
+    },
+    {
+      id: 2,
+      tag: "Sad",
+      content:
+        "She texted, 'I made your favorite dinner. Hurry home.'He never read it.The police knocked first.She opened the door, smiling—until she saw their faces....",
+      author: "Akshi",
+      date: "3 Dec 2025",
+    },
+  ];
+  
   return (
     <div className="w-full items-center justify-center overflow-y-auto">
       {!auth ? (
@@ -164,54 +149,63 @@ function Home() {
         </motion.section>
 
         {/* Action Buttons Section */}
-        <motion.section
-  ref={actionRef}
-  style={{ y: actionParallax }}
-  id="action-buttons"
-  className="bg-[#F3EBE3] h-screen w-full px-6 flex flex-col justify-center items-center"
-  initial={{ opacity: 0, scale: 1 }}
-  whileInView={{ opacity: 1, scale: 1 }}
-  transition={{ duration: 0.8, ease: "easeOut" }}
->
-  {/* Main Text */}
-  <motion.p
-    className="text-[5vh] md:text-[8vh] lg:text-[9vh] italic text-center font-serif text-gray-900 leading-snug max-w-3xl lg:max-w-5xl"
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 1, delay: 0.2 }} 
-    style={{ fontFamily: 'Literata' }}
-  >
-    <span className="block ">Your enchanted realm,</span>
-    <span className="block ">to <span className="font-bold text-gray-800">escape</span>, to <span className="font-bold text-gray-800">explore</span>,</span>
-    <span className="block">and to <span className="font-bold text-gray-800">create</span>.</span>
-  </motion.p>
+         <motion.section
+      id="action-buttons"
+      className="bg-[#F3EBE3]  w-full py-10 px-6 flex flex-col justify-center items-center"
+      initial={{ opacity: 0, scale: 1 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+    >
+      {/* Main Text */}
+      <motion.p
+        className="text-[9vh] md:text-[8vh] lg:text-[9vh] italic text-center font-serif text-gray-900 leading-snug max-w-3xl lg:max-w-5xl mb-10"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.2 }}
+        style={{ fontFamily: 'Literata' }}
+      >
+        <span className="block ">Share Your Story</span>
+       
+      </motion.p>
 
-  {/* Interactive Buttons */}
-  <motion.div
-    className="flex items-center mt-20  justify-center px-14 text-md lg:text-[5vh] mx-14"
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 1, delay: 0.4 }}
-    style={{ fontFamily: 'Literata' }}
-  >
-    {["Dream ✧ Create", "Refine ✧ Enchant", "Share the Magic"].map((text, index) => (
-      <div key={index} className="flex items-center ">
-        <motion.div
-          className="px-6 py-3 bg-black  text-white rounded-xl shadow-lg transition-transform hover:scale-110 hover:shadow-2xl"
-          whileHover={{ scale: 1.0 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          {text}
-        </motion.div>
-        {index < 2 && <span className="text-black text-2xl">→</span>}
+      {/* Stories Grid */}
+      <div className=" w-full max-w-5xl px-4">
+        {stories.map((story, index) => (
+          <motion.div
+            key={story.id}
+            className={`relative mb-5 bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 ${
+              index % 2 === 0 ? "lg:ml-32 md:ml-32" : "lg:mr-32 md:mr-32"
+            }`}
+            initial={{ opacity: 0, x: index % 2 === 0 ? 200 : -200 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, ease: "easeInOut", delay: index * 0.2 }}
+            
+          >
+            {/* Tag */}
+            <span className={`top-0 left-0  text-white font-bold px-4 py-2 rounded-br-lg text-sm rotate-90 ${
+              index % 2 === 0 ? "bg-yellow-500" : "bg-blue-500"
+            }`}>
+              {story.tag}
+            </span>
+
+            {/* Content */}
+            <p className="italic mb-4 mt-5  text-sm leading-relaxed text-gray-300">
+              {story.content}{" "}
+              <span className="text-blue-500 cursor-pointer hover:underline">
+                <Link to={`/login`}>
+                READ MORE
+                </Link>
+              </span>
+            </p>
+
+            {/* Author */}
+            <p className="text-right text-gray-500 text-sm mt-4">
+              - {story.author} <br /> {story.date}
+            </p>
+          </motion.div>
+        ))}
       </div>
-    ))}
-  </motion.div>
-</motion.section>
-
-
-
-
+    </motion.section>
 
         {/* Journey Section */}
         <motion.section
@@ -271,61 +265,57 @@ function Home() {
             </motion.li>
           ))}
         </ol>
+
+
+
       </div>
     </motion.section>
 
-
-
-
-
       </div>
       ) : (
-        <div className="grid grid-cols-1 w-3/4 justify-center mx-auto md:grid-row-2 gap-10 py-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="h-52 bg-blue-500/20 rounded-2xl shadow-xl p-6 flex flex-col justify-center items-center text-center"
-          >
-            <h1 className="text-4xl font-extrabold text-white mb-4">
-              Random Joke 🤣
-            </h1>
-            <p className="text-lg text-gray-100 italic">{joke}</p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={fetchJoke}
-              className="mt-6 bg-white text-black px-6 py-3 rounded-lg font-semibold transition cursor-pointer hover:bg-gradient-to-r hover:from-green-500 hover:to-blue-500 shadow-md duration-300 ease-in-out hover:text-white"
+        <div className="w-full ">
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5, delay: 0.2 }}
+    className="backdrop-blur-lg my-10 w-full max-w-8xl mx-auto rounded-2xl shadow-2xl p-6 bg-opacity-20 "
+  >
+    {/* Flexbox Container */}
+    <div className="flex flex-wrap my-10 gap-6 justify-center">
+      {posts.length === 0 ? (
+        <motion.p
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.1, delay: 0.1 }}
+          className="text-gray-300 text-center w-full text-xl"
+        >
+          No posts available.
+        </motion.p>
+      ) : (
+        [...posts].sort((a, b) => new Date(b.createdAt || b.$createdAt) - new Date(a.createdAt || a.$createdAt))
+          .map((postItem, index) => (
+            <motion.div
+              key={postItem.$id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.2, delay: 0.1 + index * 0.1 }}
+              whileHover={{ scale: 1, boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.2)" }}
+              className="inline-flex transform transition-all duration-300 ease-in-out"
             >
-              Get New Joke 🔄
-            </motion.button>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="backdrop-blur-lg p-6 w-full rounded-2xl shadow-lg transition-transform"
-          >
-            <h1 className="text-4xl font-bold text-white mb-6">Latest Posts</h1>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {posts.length === 0 ? (
-                <p className="text-gray-300">No posts available.</p>
-              ) : (
-                posts.map((postItem) => (
-                  <JokeCard
-                    key={postItem.$id}
-                    {...postItem}
-                    onDelete={() =>
-                      setPosts((prev) =>
-                        prev.filter((p) => p.$id !== postItem.$id)
-                      )
-                    }
-                  />
-                ))
-              )}
-            </div>
-          </motion.div>
-        </div>
+              <TaleCard
+                {...postItem}
+                onDelete={() =>
+                  setPosts((prev) =>
+                    prev.filter((p) => p.$id !== postItem.$id)
+                  )
+                }
+              />
+            </motion.div>
+          ))
+      )}
+    </div>
+  </motion.div>
+</div>
       )}
     </div>
   );

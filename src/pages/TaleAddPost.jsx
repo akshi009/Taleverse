@@ -1,12 +1,12 @@
 // import React from 'react'
-import JokePostForm from '../components/JokePostForm'
+import TalePostForm from '../components/TalePostForm'
 import Container from '../container/Container'
 
 function AddPost() {
   return (
     <div className='my-10'>
         <Container>
-            <JokePostForm />
+            <TalePostForm />
         </Container>
     </div>
   )

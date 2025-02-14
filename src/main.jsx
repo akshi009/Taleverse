@@ -8,11 +8,12 @@ import Authentication from './components/Authentication.jsx'
 import Home from './components/Home.jsx'
 import Login from './components/Login.jsx'
 import Signup from './components/Signup.jsx'
+// import TaleEditor from './components/TaleEditor.jsx'
 import './index.css'
-import AllPost from './pages/AllJokePost.jsx'
-import AddPost from './pages/JokeAddPost.jsx'
-import JokeEditor from './pages/JokeEditor.jsx'
-import JokePost from './pages/JokePost.jsx'
+import AllPost from './pages/AllTalePost.jsx'
+import AddPost from './pages/TaleAddPost.jsx'
+import TaleEditor from './pages/TaleEditor.jsx'
+import TalePost from './pages/TalePost.jsx'
 import store from './store/store.js'
 
 
@@ -60,12 +61,12 @@ const router = createBrowserRouter([
         element:(
         <Authentication>
           {" "}
-          <JokeEditor/>
+          <TaleEditor/>
         </Authentication>)
       },
       {
               path: "/post/:slug",
-              element: <JokePost />,
+              element: <TalePost />,
             },
 
     ]

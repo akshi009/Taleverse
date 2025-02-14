@@ -12,7 +12,7 @@ function Logout() {
     }
   return (
     <button
-   className="px-4 py-2 rounded-full hover:bg-white hover:text-blue-600 transition cursor-pointer"
+   className="px-4 py-2 rounded-full hover:bg-red-900 duration-300 ease-in-out transition cursor-pointer"
     onClick={handlerLogout}
     >Logout
     </button>

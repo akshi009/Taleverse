@@ -6,7 +6,7 @@ import { Controller } from 'react-hook-form'
 function RTEjoke({name,control,label,defaultvalue=''}) {
   return (
 
-    <div className="w-ful">
+    <div className="w-ful ">
         {label && <label className="inline-block  pl-1">{label}</label>}
 
         <Controller
@@ -16,12 +16,13 @@ function RTEjoke({name,control,label,defaultvalue=''}) {
                 <Editor
           apiKey="iwcbrrhyj2vb6t9rr8tmihki76cphqt8ylzv72na38jzsqxk" 
             initialValue={defaultvalue}
+           
             init={{
               branding: false,
               menubar: false,
               readonly: false,
               plugins: [
-                "image",
+                
                 "advlist",
                 "autolink",
                 "lists",
@@ -43,7 +44,7 @@ function RTEjoke({name,control,label,defaultvalue=''}) {
                 "anchor",
               ],
               toolbar:
-                "undo redo | blocks | image | bold italic forecolor | | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent |removeformat | help",
+                "undo redo ",
               content_style:
                 "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
             }}

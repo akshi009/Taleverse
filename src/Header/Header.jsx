@@ -19,25 +19,25 @@ function Header() {
     ];
 
     return (
-        <header className="bg-black text-white shadow-md ">
+        <header className="bg-black py-2 text-white shadow-md justify-end right-0">
            
                 {/* Logo */}
                
 
 
                 {/* Desktop Navigation */}
-                <nav className="hidden md:flex justify-end">
+                <nav className="hidden md:flex justify-end right-3 mx-10">
                     {navItems.map(
                         (item) =>
                             item.active && (
-                                <motion.button
+                                <button
                                     key={item.name}
                                     // whileHover={{ scale: 1.1 }}
-                                    className="px-4 py-2 rounded-full hover:bg-white hover:text-blue-600 transition cursor-pointer"
+                                    className="px-4 py-2 rounded-full hover:bg-gray-700 duration-300 ease-in-out transition cursor-pointer"
                                     onClick={() => navigate(item.slug)}
                                 >
                                     {item.name}
-                                </motion.button>
+                                </button>
                             )
                     )}
                     {authStatus && <Logout />}
