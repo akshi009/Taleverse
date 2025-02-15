@@ -163,7 +163,7 @@ function Home() {
     >
       {/* Main Text */}
       <motion.p
-        className="text-[9vh] md:text-[8vh] lg:text-[9vh] italic text-center font-serif text-gray-900 leading-snug max-w-3xl lg:max-w-5xl mb-10"
+        className="text-4xl md:text-[8vh] lg:text-[9vh] italic text-center font-serif text-gray-900 leading-snug max-w-3xl lg:max-w-5xl mb-10"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.2 }}

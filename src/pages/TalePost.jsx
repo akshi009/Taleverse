@@ -151,7 +151,9 @@ function TalePost() {
         </div>
       </motion.div>
     </div>
-  ) : null;
+  ) : <div  className="text-gray-300 h-screen text-center w-full text-xl">
+  No post available
+  </div>;
 }
 
 export default TalePost;

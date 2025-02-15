@@ -45,7 +45,7 @@ function Header() {
 
                 {/* Mobile Menu Button */}
                 <button
-                    className="md:hidden focus:outline-none"
+                    className="md:hidden focus:outline-none text-left justify-end mx-2"
                     onClick={() => setIsOpen(!isOpen)}
                 >
                     {isOpen ? <X size={28} /> : <Menu size={28} />}
@@ -57,7 +57,7 @@ function Header() {
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="md:hidden cursor-pointer bg-white text-black px-6 py-4 space-y-2 shadow-lg"
+                    className="md:hidden cursor-pointer bg-black text-gray-200 px-6 pt-4 space-y-2 shadow-lg"
                 >
                     {navItems.map(
                         (item) =>
